@@ -1,74 +1,328 @@
-﻿<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>João Dantas | Dev C# & Arquitetura de Dados</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="João Dantas — Desenvolvedor Backend. TypeScript, NestJS, Prisma.">
+<title>João Dantas</title>
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --surface: #111114;
+    --border: #1e1e23;
+    --text: #e1e1e6;
+    --muted: #7c7c8a;
+    --accent: #6ee7b7;
+    --accent-dim: #34d399;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ======== HEADER ======== */
+  header {
+    padding: 80px 0 48px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  header p {
+    color: var(--muted);
+    font-size: 1.1rem;
+  }
+
+  /* ======== SECTION ======== */
+  section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-of-type {
+    border-bottom: none;
+  }
+
+  h2 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 560px;
+  }
+
+  /* ======== STACK ======== */
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .stack span {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    color: var(--text);
+    transition: border-color 0.2s;
+  }
+
+  .stack span:hover {
+    border-color: var(--accent);
+  }
+
+  /* ======== PROJECTS ======== */
+  .project-featured {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+
+  .project-featured:hover {
+    border-color: var(--accent);
+  }
+
+  .project-featured h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .project-featured h3 .highlight {
+    color: var(--accent);
+  }
+
+  .project-featured p {
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .badge {
+    font-size: 0.78rem;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: rgba(110, 231, 183, 0.1);
+    color: var(--accent);
+    border: 1px solid rgba(110, 231, 183, 0.2);
+  }
+
+  .project-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 0.9rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .project-link:hover {
+    text-decoration: underline;
+  }
+
+  /* ======== OTHER PROJECTS ======== */
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  @media (min-width: 500px) {
+    .project-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    transition: border-color 0.2s;
+    text-decoration: none;
+    display: block;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent);
+  }
+
+  .project-card h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .project-card .lang {
+    font-size: 0.78rem;
+    color: var(--accent);
+  }
+
+  /* ======== LINKS ======== */
+  .links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .links a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 8px 0;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .links a:hover {
+    color: #fff;
+    border-bottom-color: var(--accent);
+  }
+
+  /* ======== FOOTER ======== */
+  footer {
+    padding: 40px 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  /* ======== RESPONSIVE ======== */
+  @media (max-width: 480px) {
+    header { padding: 48px 0 32px; }
+    header h1 { font-size: 2rem; }
+    section { padding: 40px 0; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">JD<span>.</span></div>
-            <ul>
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#skills">Habilidades</a></li>
-                <li><a href="#projects">Projetos</a></li>
-            </ul>
-        </nav>
-        <div class="hero">
-            <h1>João <span>Dantas</span></h1>
-            <h2>C# Developer | AI Enthusiast | Data Architecture</h2>
-            <p>Do suporte técnico à estruturação de dados inteligentes. Transformando a experiência de Help Desk em soluções de software robustas.</p>
-            <div class="cta-btns">
-                <a href="https://github.com/Joao147258" class="btn">GitHub</a>
-                <a href="#projects" class="btn secondary">Ver Projetos</a>
-            </div>
-        </div>
-    </header>
+<div class="container">
 
-    <section id="about">
-        <div class="container">
-            <h2>Sobre Mim</h2>
-            <p>Atualmente atuando como <strong>Help Desk</strong>, trago comigo uma visão prática de resolução de problemas e atendimento ao usuário. Estou em transição focada para <strong>C# e Inteligência Artificial</strong>, enquanto me aprofundo em <strong>Arquitetura de Dados</strong> para construir sistemas que não apenas funcionam, mas são escaláveis e inteligentes.</p>
-        </div>
-    </section>
+  <header>
+    <h1>João Dantas</h1>
+    <p>Desenvolvedor Backend — TypeScript, NestJS &amp; Prisma</p>
+  </header>
 
-    <section id="skills">
-        <div class="container">
-            <h2>Core Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-item"><i class="fab fa-cuttlefish"></i> C# & .NET</div>
-                <div class="skill-item"><i class="fas fa-brain"></i> IA & Machine Learning</div>
-                <div class="skill-item"><i class="fas fa-database"></i> Arquitetura de Dados</div>
-                <div class="skill-item"><i class="fas fa-tools"></i> Resolução de Problemas (IT Support)</div>
-            </div>
-        </div>
-    </section>
+  <section>
+    <h2>Sobre</h2>
+    <p>
+      Construo APIs robustas e bem documentadas com foco em arquitetura limpa,
+      padrões de projeto e código testável. Transformo regras de negócio complexas
+      em sistemas previsíveis — do domínio ao banco, cada camada tem um motivo claro para existir.
+    </p>
+  </section>
 
-    <section id="projects">
-        <div class="container">
-            <h2>Projetos em Destaque</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <div class="tag">C# / POO</div>
-                    <h3>Manager Lib 1.0</h3>
-                    <p>Sistema de gerenciamento de biblioteca focado em arquitetura limpa e encapsulamento.</p>
-                    <a href="https://github.com/Joao147258/RepC-Study/tree/main/Manager%20Lib%201.0">Ver Código <i class="fas fa-external-link-alt"></i></a>
-                </div>
-                <div class="project-card">
-                    <div class="tag">Dados</div>
-                    <h3>RepCS-Study</h3>
-                    <p>Repositório central de estudos técnicos e roadmap de Arquitetura de Dados.</p>
-                    <a href="https://github.com/Joao147258/RepCS-Study">Ver Roadmap <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section>
+    <h2>Stack</h2>
+    <div class="stack">
+      <span>TypeScript</span>
+      <span>Node.js</span>
+      <span>NestJS</span>
+      <span>Prisma</span>
+      <span>SQL</span>
+      <span>Python</span>
+      <span>C#</span>
+      <span>SQLite</span>
+      <span>PostgreSQL</span>
+      <span>Docker</span>
+      <span>Git</span>
+      <span>REST APIs</span>
+    </div>
+  </section>
 
-    <footer>
-        <p>&copy; 2026 João Dantas | Desenvolvido com C# em mente.</p>
-    </footer>
+  <section>
+    <h2>Projeto em destaque</h2>
+    <div class="project-featured">
+      <h3>BolePix <span class="highlight">— API de Recorrência Bancária</span></h3>
+      <p>
+        Núcleo de domínio de um serviço de recorrência de cobrança via BolePix Automático
+        do Banco do Brasil. Implementa máquina de estados com State Pattern, retry com
+        exponential backoff + jitter, 3 camadas de idempotência e mock da API BB com 8 cenários de erro.
+      </p>
+      <div class="badges">
+        <span class="badge">NestJS 11</span>
+        <span class="badge">Prisma v7</span>
+        <span class="badge">SQLite</span>
+        <span class="badge">State Pattern</span>
+        <span class="badge">DDD</span>
+        <span class="badge">TypeScript</span>
+      </div>
+      <a class="project-link" href="https://github.com/Joao147258/Simula-o-API-BolePix-BB" target="_blank">
+        Ver no GitHub →
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Outros projetos</h2>
+    <div class="project-grid">
+      <a class="project-card" href="https://github.com/Joao147258/all_Projects_Alura" target="_blank">
+        <h4>all_Projects_Alura</h4>
+        <span class="lang">TypeScript</span>
+      </a>
+      <a class="project-card" href="https://github.com/Joao147258/OpenStudy" target="_blank">
+        <h4>OpenStudy</h4>
+        <span class="lang">TypeScript</span>
+      </a>
+      <a class="project-card" href="https://github.com/Joao147258/StackMailValidation" target="_blank">
+        <h4>StackMailValidation</h4>
+        <span class="lang">TypeScript</span>
+      </a>
+      <a class="project-card" href="https://github.com/Joao147258/NFS-e-Sherlock" target="_blank">
+        <h4>NFS-e-Sherlock ⭐1</h4>
+        <span class="lang">Python</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Links</h2>
+    <div class="links">
+      <a href="https://github.com/Joao147258" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/joaodantas" target="_blank">LinkedIn</a>
+      <a href="mailto:joao@email.com">Email</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>© 2026 João Dantas</p>
+</footer>
 </body>
 </html>
